@@ -122,6 +122,57 @@ function(argOne, argTwo, argThree, custom variable);
 The last argument have to leave the space to the custom variable. 
 ```
 
+```bash
+Validation:
+You can add validation in the template
+
+In this example, because 123 is num, the template would display an output
+let func = {
+    isNum(value){
+        return !isNaN(Number(value));
+    }
+};
+
+const sum = {
+    "rules":{
+        hello:"const@hello",
+        world:"const@world",
+    },
+    "validator":[
+        "const@123 => isNum@~",
+    ]
+};
+
+output: { hello: 'hello', world: 'world' }
+
+
+If the validation is failed, return null; 
+const sum = {
+    "rules":{
+        hello:"const@hello",
+        world:"const@world",
+    },
+    "validator":[
+        "const@123 => isNum@~",
+        "const@aa => isNum@~"
+    ]
+};
+output: null
+const model = new JSONNormal().parseJson(sum,func);
+
+
+```
+
+
+```bash
+
+
+```
+
+```bash
+
+
+```
 ## Questions & Suggestions
 
 Please open an issue [here](https://github.com/eggjs/egg/issues).
