@@ -84,6 +84,24 @@ You also can define and use you own function here as well
 
 const moment = require('moment');
 
+let func = {
+    time(value) {
+        if (
+            "now" === arguments[0]
+        ){
+            return moment().format(arguments[1]);
+        }
+
+        if (
+            arguments.length > 2
+        ){
+            return moment(arguments[0], arguments[1]).format(arguments[2]);
+        } else {
+            return moment(arguments[0]).format(arguments[1]);
+        }
+    },
+};
+
 const sum = {
     "rules":{
         currentTime:"time@now",
